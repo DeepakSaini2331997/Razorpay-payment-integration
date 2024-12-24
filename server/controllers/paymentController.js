@@ -41,16 +41,18 @@ const verifyPayment =(req,res)=>{
     
     const isSignatureValid = generatedSignature == razorpay_signature;
     if(isSignatureValid){
-        res.status(200).json({
-            success:true,
-            msg:'payment Success',
-            payment_id:razorpay_payment_id
-        })
+        // res.status(200).json({
+        //     success:true,
+        //     msg:'payment Success',
+        //     payment_id:razorpay_payment_id
+        // })
+        res.redirect("http://localhost:3000/payment-success?payment_id="+razorpay_payment_id)
     }else{
-        res.status(400).json({
-            success:false,
-            msg:'payment Failed'
-        })
+        // res.status(400).json({
+        //     success:false,
+        //     msg:'payment Failed'
+        // })
+        res.redirect("http://localhost:3000/payment-fail")
     }
 }
 
